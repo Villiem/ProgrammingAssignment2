@@ -14,7 +14,7 @@ makeCacheMatrix <- function(x = matrix()) {
   getinverse <- function() i
   list(set = set, get = get,
        setinverse = setinverse,
-       getinverse = geinverse)
+       getinverse = getinverse)
 }
 
 
@@ -31,3 +31,12 @@ cacheSolve <- function(x, ...) {
   x$setinverse(i)
   i
 }
+
+## Test
+x <- matrix(rexp(100, rate=.1), ncol=10)
+x
+# solve(x) to make sure it exists
+
+x_cache <- makeCacheMatrix(x)
+cacheSolve(x_cache) ## inverse
+cacheSolve(x_cache) ## same but now with the message
